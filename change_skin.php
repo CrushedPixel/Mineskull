@@ -64,7 +64,11 @@ function set_skin($username, $password, $skin) {
 
     curl_close($ch);
 
-    return(strpos($result, "Your skin has been changed") !== false);
+    if(strlen(strstr($result, "success=Your skin has been changed! It will take a couple of seconds for it to update.")) > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 

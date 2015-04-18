@@ -59,8 +59,9 @@ foreach($_FILES as $file) {
         $username = $row["username"];
         $uuid = $row["UUID"];
         $success = set_skin($row["username"], $row["password"], realpath($tmp));
-        if(!$success) {
+        if($success === false) {
             header("Location: http://crushedpixel.eu/skull?error=0");
+            exit;
         }
         $found = true;
         break;
