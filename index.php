@@ -53,7 +53,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
-                    <a target="_blank">Source Code on GitHub</a>
+                    <a target="_blank" href="https://github.com/CrushedPixel/MCSkullGenerator">Source Code on GitHub</a>
                 </li>
             </ul>
 
