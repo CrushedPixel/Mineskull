@@ -28,6 +28,11 @@ if($used > $time-60) { //Limit the usage for 1 generation per minute/ip
 foreach($_FILES as $file) {
     $tmp = $file['tmp_name'];
 
+    if(strlen($tmp) == 0) {
+        header("Location: http://crushedpixel.eu/skull?error=3");
+        exit;
+    }
+
     if ($file["size"] > 100 * 1024) { //if more than 100KB, probably no valid skin
         header("Location: http://crushedpixel.eu/skull?error=0");
     }

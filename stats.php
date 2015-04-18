@@ -15,7 +15,7 @@ REQUIRE_ONCE "database_connection.php";
 </head>
 
 <style>
-p{font-size:20px}.navbar{border:0!important;border-radius:0!important}
+	p{font-size:20px}.navbar{border:0!important;border-radius:0!important}
 </style>
 
 <body>
@@ -46,14 +46,13 @@ p{font-size:20px}.navbar{border:0!important;border-radius:0!important}
 		</div>
 	</div>
 </div>
-
+<br>
+<br>
 <div class="container bcon">
-	<div class="row">
-		<div class="col-lg-8 col-sm-offset-2">
-			<div class="page-header">
-				<div class="jumbotron">
-					<h1><center>General Statistics</center></h1>
-				</div>
+	<div class="col-lg-8 col-sm-offset-2">
+		<div class="page-header">
+			<div class="jumbotron">
+				<h1><center>General Statistics</center></h1>
 			</div>
 		</div>
 	</div>
@@ -91,10 +90,10 @@ p{font-size:20px}.navbar{border:0!important;border-radius:0!important}
 
 			$average = (int)(($time-$first)/($total+$duplicates));
 
-			echo '<h2>Total Skulls generated: <b>'. ($total+$duplicates) .'</b>,</h2>';
-			echo '<h2><b>'. $duplicates .'</b> of them being duplicates.</h2>';
-			echo '<h2>Skulls generated in the past 24 hours: <b>'. $lastday .'</b></h2>';
-			echo '<h2>One Skull generated every <b>'. $average .' seconds</b></h2>';
+			echo '<p>Total Skulls generated: <b>'. ($total+$duplicates) .'</b>,</p>';
+			echo '<p><b>'. $duplicates .'</b> of them being duplicates.</p><br>';
+			echo '<p>New skulls generated in the past 24 hours: <b>'. $lastday .'</b></p>';
+			echo '<p>One skull is being generated every <b>'. $average .' seconds</b></p>';
 
 			echo '<br>';
 
