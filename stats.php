@@ -5,26 +5,17 @@ REQUIRE_ONCE "database_connection.php";
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="description" content="Minecraft Custom Skull Generator - Create Custom Skulls">
+	<title>Minecraft Custom Skull Generator - Statistics</title>
 	<link rel="stylesheet" href="/skull/bootstrap/css/bootstrap.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+	<link href="//fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 
 <style>
-	p {
-		font-size: 20px;
-	}
-	code /*If you want code*/ {
-		font-size: 130%;
-	}
-	code#inline {
-		font-size: 100%;
-	}
-	.navbar {
-		border: 0px !important;
-		border-radius: 0px !important;
-	}
+p{font-size:20px}.navbar{border:0!important;border-radius:0!important}
 </style>
 
 <body>
@@ -49,6 +40,7 @@ REQUIRE_ONCE "database_connection.php";
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a></li>
+				<li><a href="http://thedestruc7i0n.ca" target="_blank">TheDestruc7i0n</a></li>
 			</ul>
 
 		</div>
@@ -113,7 +105,7 @@ REQUIRE_ONCE "database_connection.php";
 <hr/>
 
 <ul class="breadcrumb">
-	<center><li class="active">&copy; 2015 <a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a></li></center>
+	<center><li class="active">&copy; 2015 <a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a> &amp; <a href="http://thedestruc7i0n.ca" target="_blank">TheDestruc7i0n</a></li></center>
 </ul>
 </body>
 </html>

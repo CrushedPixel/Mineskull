@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="description" content="Minecraft Custom Skull Generator - Create Custom Skulls">
+	<title>Minecraft Custom Skull Generator - Front Page</title>
 	<link rel="stylesheet" href="/skull/bootstrap/css/bootstrap.min.css">
 	<link href="//fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 
 <style>
@@ -39,7 +42,9 @@ p{font-size:20px}.navbar{border:0!important;border-radius:0!important}.invis_but
 		</div>
 	</div>
 </div>
-
+<br>
+<br>
+<br>
 <div class="container bcon">
 	<div class="row">
 		<div class="col-lg-8 col-sm-offset-2">
@@ -49,7 +54,7 @@ p{font-size:20px}.navbar{border:0!important;border-radius:0!important}.invis_but
 					<br>
 					<center>
 						<form action="/skull/generate_skull.php" method="post" enctype="multipart/form-data">
-							<input class="form-control uploadFile" id="disabledInput" placeholder="Choose File" disabled=""/>
+							<input class="form-control uploadFile" id="disabledInput" placeholder="Choose Skin File" disabled=""/>
 							<div class="fileUpload btn btn-primary">
 								<span>Choose Skin</span>
 								<input type="file" class="upload uploadBtn" name="fileToUpload"/>
@@ -114,8 +119,7 @@ p{font-size:20px}.navbar{border:0!important;border-radius:0!important}.invis_but
 	$(document).ready(function () {
 		var client = new ZeroClipboard($(".copyable"));
 		$(".uploadBtn").change(function(e){
-			$in=$(this);
-			$(".uploadFile").val($in.val());
+			$(".uploadFile").val($(this).val());
 		});			
 	});
 </script>
