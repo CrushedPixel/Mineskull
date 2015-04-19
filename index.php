@@ -15,18 +15,11 @@ global $con;
                                     initial-scale=1.0,
                                     maximum-scale=1.0,
                                     user-scalable=no">
-    ￼￼￼￼￼￼￼￼￼
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 
 <style>
-    p{font-size:20px}.navbar{border:0!important;border-radius:0!important}
-    .contentBorder{
-        outline: 2px solid #CCC;
-        margin-bottom: 15px;
-    }
-    .invis_button{opacity:1}.fileUpload{position:relative;overflow:hidden;margin:10px}
-    .fileUpload input.upload{position:absolute;top:0;right:0;margin:0;padding:0;font-size:20px;cursor:pointer;opacity:0;filter:alpha(opacity=0)}
+    p{font-size:20px}.navbar{border:0!important;border-radius:0!important}.contentBorder{outline:#CCC solid 2px;margin-bottom:15px}.invis_button{opacity:1}.fileUpload{position:relative;overflow:hidden;margin:10px}.fileUpload input.upload{position:absolute;top:0;right:0;margin:0;padding:0;font-size:20px;cursor:pointer;opacity:0;filter:alpha(opacity=0)}
 </style>
 
 <body>
@@ -89,12 +82,6 @@ global $con;
                             </center>
                         </form>
                     </div>
-
-                    <script>
-                        document.getElementById("uploadBtn").onchange = function () {
-                            document.getElementById("uploadFile").value = this.value;
-                        };
-                    </script>
 
                     <?php
                     if(isset($_GET["error"])) {

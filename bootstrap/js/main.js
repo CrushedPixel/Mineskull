@@ -8,4 +8,7 @@ $(document).ready(function () {
     $(".choosefile").click(function() {
         $(".uploadBtn").trigger("click");
     });
+    $("#uploadBtn").change(function() {
+        $("#uploadFile").val($(this).val());
+    });
 });
