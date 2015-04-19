@@ -177,10 +177,16 @@ global $con;
             </div>
             <div class="row">
                 <h2>The Developers</h2>
-                <p>Using the Custom Skull Generator, you can create Player Heads from any skin file you want. Simply link to a skin on a website (e.g. on <a href="http://i.imgur.com/VqPtK5N.png">Imgur</a>)
-                    or upload a skin file from your computer.</p>
-                <p class="text-success"><b>This tool works with the newest Minecraft versions</b> and is not affected by the Security Update which broke the old way of creating Custom Player Skulls.</p>
-            </div>
+                <p>The code behind MCMapAnalytics was created by CrushedPixel, the design was made by TheDestruc7i0n.</p>
+                <p>CrushedPixel is currently raising funds for an awesome Minecraft Mod on Kickstarter,
+                    please back the project to support him!</p>
+                <center><iframe width="100%" height="455px" src="https://www.kickstarter.com/projects/crushedpixel/minecraft-replay-mod/widget/video.html"
+                                frameborder="2" scrolling="no"></iframe></center>
+
+                <br>
+                <p>Alternatively, you can donate to us via PayPal:</p>
+                <p><a href="http://bit.ly/DonorCP">CrushedPixel on PayPal</a></p>
+                <p><a href="http://bit.ly/DonorTheDestruc7i0n">TheDestruc7i0n on PayPal</a></p>            </div>
         </div>
     </div>
 </div>
