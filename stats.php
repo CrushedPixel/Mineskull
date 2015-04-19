@@ -38,6 +38,12 @@ REQUIRE_ONCE "database_connection.php";
 				</li>
 			</ul>
 
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="/skull/gallery">Gallery</a>
+				</li>
+			</ul>
+
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a></li>
 				<li><a href="http://thedestruc7i0n.ca" target="_blank">TheDestruc7i0n</a></li>

@@ -1,3 +1,8 @@
+<?php
+REQUIRE_ONCE "database_connection.php";
+global $con;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +46,12 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="/skull/stats">Statistics</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/skull/gallery">Gallery</a>
                 </li>
             </ul>
 
@@ -109,9 +120,6 @@
                         echo '<br>';
                         echo '<div class="contentBorder"><center><p class="text-danger">'.$err_msg."</p></center></div>";
                     } elseif(isset($_GET["id"])) {
-                        REQUIRE_ONCE "database_connection.php";
-                        global $con;
-
                         $sql = "SELECT * FROM generated WHERE id=?";
                         $stmt = $con->prepare($sql);
                         $stmt->bindParam(1, $_GET["id"]);
@@ -136,11 +144,42 @@
                         echo '</span>';
                         echo '</div>';
                         echo '<br>';
-                        echo '<br>';
                         echo '<center><img width="93px" height="100px" src="http://heads.freshcoal.com/3d/3d.php?headOnly=true&aa=true&user='.$url.'"/></center>';
+                        echo '</div>';
                     }
                     ?>
                 </div>
+            </div>
+            <div class="row">
+                <h2>Introduction</h2>
+                <p>Using the Custom Skull Generator, you can create Player Heads from any skin file you want. Simply link to a skin on a website (e.g. on <a href="http://i.imgur.com/VqPtK5N.png">Imgur</a>)
+                    or upload a skin file from your computer.</p>
+                <p class="text-success"><b>This tool works with the newest Minecraft versions</b> and is not affected by the Security Update which broke the old way of creating Custom Player Skulls.</p>
+            </div>
+            <div class="row">
+                <h2>How it works</h2>
+                <p>The skin files you provide are being uploaded to a <b>Premium Minecraft Account</b>. Using a call to the <a href="http://wiki.vg/Mojang_API">Mojang API</a>, the system retrieves the URL
+                    of the skin file as well as the signature key which is required since the 1.8.4 Update.</p>
+                <p>Due to rate limitations on the Mojang API, a new security key can only be retrieved <b>every 30 seconds</b>. Therefore, multiple Minecraft Accounts are required to power this tool.</p>
+
+                <?php
+                    $sql = "SELECT COUNT(*) AS count FROM accounts";
+                    $stmt = $con->prepare($sql);
+                    $stmt->execute();
+
+                    $count = $stmt->fetch()["count"];
+                    $sec = 30/$count;
+
+                    echo "<p>There are currently <b>$count Accounts</b> being used, allowing the generation of a Custom Skull <b>every $sec seconds</b>.</p>"
+                ?>
+
+                <p>If you have a <b>spare Minecraft Account</b> which we can use to speed up this website, please <a href="mailto:crushedpixelmaps@gmail.com">contact us</a>.</p>
+            </div>
+            <div class="row">
+                <h2>The Developers</h2>
+                <p>Using the Custom Skull Generator, you can create Player Heads from any skin file you want. Simply link to a skin on a website (e.g. on <a href="http://i.imgur.com/VqPtK5N.png">Imgur</a>)
+                    or upload a skin file from your computer.</p>
+                <p class="text-success"><b>This tool works with the newest Minecraft versions</b> and is not affected by the Security Update which broke the old way of creating Custom Player Skulls.</p>
             </div>
         </div>
     </div>
