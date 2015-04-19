@@ -1,4 +1,41 @@
 <?php
+function curl_get_file_size( $url ) {
+    // Assume failure.
+    $result = -1;
+
+    $curl = curl_init( $url );
+
+    // Issue a HEAD request and follow any redirects.
+    curl_setopt( $curl, CURLOPT_NOBODY, true );
+    curl_setopt( $curl, CURLOPT_HEADER, true );
+    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+    curl_setopt( $curl, CURLOPT_FOLLOWLOCATION, true );
+    curl_setopt( $curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT'] );
+
+    $data = curl_exec( $curl );
+    curl_close( $curl );
+
+    if( $data ) {
+        $content_length = "unknown";
+        $status = "unknown";
+
+        if( preg_match( "/^HTTP\/1\.[01] (\d\d\d)/", $data, $matches ) ) {
+            $status = (int)$matches[1];
+        }
+
+        if( preg_match( "/Content-Length: (\d+)/", $data, $matches ) ) {
+            $content_length = (int)$matches[1];
+        }
+
+        // http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+        if( $status == 200 || ($status > 300 && $status <= 308) ) {
+            $result = $content_length;
+        }
+    }
+
+    return $result;
+}
+
 REQUIRE_ONCE "database_connection.php";
 REQUIRE_ONCE "api_utils.php";
 REQUIRE_ONCE "change_skin.php";
@@ -25,12 +62,31 @@ if($used > $time-60) { //Limit the usage for 1 generation per minute/ip
     exit;
 }
 
+if(isset($_POST["fileURL"])) {
+    $fileURL = $_POST["fileURL"];
+}
+
 foreach($_FILES as $file) {
     $tmp = $file['tmp_name'];
 
+    $unlink = false;
+
     if(strlen($tmp) == 0) {
-        header("Location: http://crushedpixel.eu/skull?error=3");
-        exit;
+        if(!isset($fileURL)) {
+            header("Location: http://crushedpixel.eu/skull?error=3");
+            exit;
+        }
+
+        $size = curl_get_file_size($fileURL);
+        if($size <= 0 or $size > 100*1024) {
+            header("Location: http://crushedpixel.eu/skull?error=0");
+        }
+
+        $temp_file = tempnam(sys_get_temp_dir(), 'skin');
+        file_put_contents($temp_file, file_get_contents($fileURL));
+
+        $tmp = $temp_file;
+        $unlink = true;
     }
 
     if ($file["size"] > 100 * 1024) { //if more than 100KB, probably no valid skin
@@ -95,13 +151,29 @@ foreach($_FILES as $file) {
         $stmt->bindParam(2, $time);
         $stmt->execute();
 
-        $sql = "INSERT INTO generated(hash,command,duplicate) VALUES(?,?,0)";
+
+        $properties = get_skull($uuid);
+
+        $command = "/give @p minecraft:skull 1 3 {SkullOwner:{Id:".gen_uuid().",Properties:{textures:[{Signature:". $properties["Signature"]
+            .",Value:" . $properties["Value"] ."}]}}}";
+
+        $decode = base64_decode($properties["Value"]);
+        $arr = json_decode($decode, true);
+
+        $url = $arr["textures"]["SKIN"]["url"];
+
+        $sql = "INSERT INTO generated(hash,command,duplicate,url) VALUES(?,?,0,?)";
         $stmt = $con->prepare($sql);
         $stmt->bindValue(1, $hash);
-        $stmt->bindValue(2, get_skull($uuid));
+        $stmt->bindValue(2, $command);
+        $stmt->bindValue(3, $url);
         $stmt->execute();
 
         $id = $con->lastInsertId();
+
+        if($unlink) {
+            unlink($tmp);
+        }
 
         header("Location: http://crushedpixel.eu/skull?id=".$id);
         exit;

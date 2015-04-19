@@ -17,12 +17,11 @@
 <style>
     p{font-size:20px}.navbar{border:0!important;border-radius:0!important}
     .contentBorder{
-
-
         outline: 2px solid #CCC;
         margin-bottom: 15px;
     }
-    .invis_button{opacity:1}.fileUpload{position:relative;overflow:hidden;margin:10px}.fileUpload input.upload{position:absolute;top:0;right:0;margin:0;padding:0;font-size:20px;cursor:pointer;opacity:0;filter:alpha(opacity=0)}
+    .invis_button{opacity:1}.fileUpload{position:relative;overflow:hidden;margin:10px}
+    .fileUpload input.upload{position:absolute;top:0;right:0;margin:0;padding:0;font-size:20px;cursor:pointer;opacity:0;filter:alpha(opacity=0)}
 </style>
 
 <body>
@@ -62,27 +61,39 @@
                 <div class="jumbotron">
                     <h1><center>Custom Skull Generator</center></h1>
                     <br>
-                    <center>
-                        <div class="row">
-                            <form action="/skull/generate_skull.php" method="post" enctype="multipart/form-data">
-
-                                <div class="fileUpload btn">
-                                    <span>Choose Skin</span>
-                                    <input type="file" class="upload uploadBtn" name="fileToUpload"/>
+                    <div class="row">
+                        <form action="/skull/generate_skull.php" method="post" enctype="multipart/form-data">
+                            <center>
+                                <div class="contentBorder" style="width: 350px; padding-bottom: 10px;">
+                                    <input id="uploadFile" placeholder="Choose File" disabled="disabled" style="width:160px;" />
+                                    <div class="fileUpload btn">
+                                        <span>Choose Skin</span>
+                                        <input type="file" class="upload uploadBtn" id="uploadBtn" name="fileToUpload"/>
+                                    </div>
+                                    <br>
+                                    <input id="linkFile" placeholder="Skin URL" name="fileURL" style="width:300px;margin-bottom: 10px" />
+                                    <br>Upload a skin file or provide a link to the image.
                                 </div>
                                 <input type="submit" class="fileUpload btn btn-primary" value="Generate Skull" name="submit">
-                            </form>
-                        </div>
-                    </center>
+                            </center>
+                        </form>
+                    </div>
+
+                    <script>
+                        document.getElementById("uploadBtn").onchange = function () {
+                            document.getElementById("uploadFile").value = this.value;
+                        };
+                    </script>
+
                     <?php
                     if(isset($_GET["error"])) {
                         $error = $_GET["error"];
                         switch($error) {
                             case 0:
-                                $err_msg = "Invalid skin uploaded!";
+                                $err_msg = "Invalid skin provided!";
                                 break;
                             case 1:
-                                $err_msg = "Sorry, we don't have enough resources to process your request. Please try again in a couple of seconds.";
+                                $err_msg = "We don't have enough resources to process your request. Please try again in a couple of seconds.";
                                 break;
                             case 2:
                                 $err_msg = "You can only convert one player head per minute. Please try again in a couple of seconds.";
@@ -94,6 +105,7 @@
                                 $err_msg = "An unknown error occured.";
                                 break;
                         }
+
                         echo '<br>';
                         echo '<div class="contentBorder"><center><p class="text-danger">'.$err_msg."</p></center></div>";
                     } elseif(isset($_GET["id"])) {
@@ -106,20 +118,26 @@
                         $stmt->execute();
 
                         $command = "";
+                        $url = "";
 
                         while($row = $stmt->fetch()) {
                             $command = $row["command"];
+                            $url = $row["url"];
                             break;
                         }
 
+                        echo '<br>';
                         echo '<div class="form-group">';
-                        echo '<label class="control-label">Copy Command</label>
-										  <div class="input-group col-xs-6">';
-                        echo '<input class="form-control copyme" id="focusedInput" type="text" value="'.$command.'" readonly="readonly" style="width:600px;">';
+                        echo '<label class="control-label">Copy Command</label>';
+                        echo '<div class="input-group col-xs-6">';
+                        echo '<input onclick="select()" class="form-control copyme" id="focusedInput" type="text" value="'.$command.'" readonly="readonly" style="width:565px;">';
                         echo '<span class="input-group-btn">';
                         echo '<button class="btn btn-default copyable" type="button" data-clipboard-text="'.$command.'">Copy</button>';
                         echo '</span>';
                         echo '</div>';
+                        echo '<br>';
+                        echo '<br>';
+                        echo '<center><img width="93px" height="100px" src="http://heads.freshcoal.com/3d/3d.php?headOnly=true&aa=true&user='.$url.'"/></center>';
                     }
                     ?>
                 </div>
