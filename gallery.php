@@ -6,7 +6,7 @@ REQUIRE_ONCE "database_connection.php";
 <html lang="en">
 <head>
     <meta name="description" content="Minecraft Custom Skull Generator - Create Custom Skulls">
-    <title>Minecraft Custom Skull Generator - Gallery</title>
+    <title>Mineskull - Gallery</title>
     <link rel="stylesheet" href="/skull/bootstrap/css/bootstrap.min.css">
     <link href="//fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
@@ -23,12 +23,12 @@ REQUIRE_ONCE "database_connection.php";
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="/skull/" class="navbar-brand">Minecraft Custom Skull Generator</a>
+            <a href="/skull/" class="navbar-brand">Mineskull</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
-                    <a target="_blank" href="https://github.com/CrushedPixel/MCSkullGenerator">Source Code on GitHub</a>
+                    <a target="_blank" href="https://github.com/CrushedPixel/Mineskull">Source Code on GitHub</a>
                 </li>
             </ul>
 

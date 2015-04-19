@@ -7,7 +7,7 @@ global $con;
 <html lang="en">
 <head>
     <meta name="description" content="Minecraft Custom Skull Generator - Create Custom Skulls">
-    <title>Minecraft Custom Skull Generator - Front Page</title>
+    <title>Mineskull - Front Page</title>
     <link rel="stylesheet" href="/skull/bootstrap/css/bootstrap.min.css">
     <link href="//fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
@@ -27,12 +27,12 @@ global $con;
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="/skull/" class="navbar-brand">Minecraft Custom Skull Generator</a>
+            <a href="/skull/" class="navbar-brand">Mineskull</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
-                    <a target="_blank" href="https://github.com/CrushedPixel/MCSkullGenerator">Source Code on GitHub</a>
+                    <a target="_blank" href="https://github.com/CrushedPixel/Mineskull">Source Code on GitHub</a>
                 </li>
             </ul>
 
@@ -61,7 +61,11 @@ global $con;
         <div class="col-lg-8 col-sm-offset-2">
             <div class="page-header">
                 <div class="jumbotron" style="margin-top: 40px;">
-                    <h1><center>Custom Skull Generator</center></h1>
+                    <center>
+                        <h1>Mineskull
+                            <br><small>Minecraft Custom Skull Generator</small>
+                        </h1>
+                    </center>
                     <br>
                     <div class="row">
                         <form action="/skull/generate_skull.php" method="post" enctype="multipart/form-data">
@@ -70,7 +74,7 @@ global $con;
                                     <input id="uploadFile" placeholder="Choose File" disabled="disabled" style="width:160px;" />
                                     <div class="fileUpload btn">
                                         <span>Choose Skin</span>
-                                        <input type="file" class="upload uploadBtn" id="uploadBtn" name="fileToUpload"/>
+                                        <input type="file" accept="image/png" class="upload uploadBtn" id="uploadBtn" name="fileToUpload"/>
                                     </div>
                                     <br>
                                     <input id="linkFile" placeholder="Skin URL" name="fileURL" style="width:300px;margin-bottom: 10px" />
@@ -148,21 +152,21 @@ global $con;
                 <p>Due to rate limitations on the Mojang API, a new security key can only be retrieved <b>every 30 seconds</b>. Therefore, multiple Minecraft Accounts are required to power this tool.</p>
 
                 <?php
-                    $sql = "SELECT COUNT(*) AS count FROM accounts";
-                    $stmt = $con->prepare($sql);
-                    $stmt->execute();
+                $sql = "SELECT COUNT(*) AS count FROM accounts";
+                $stmt = $con->prepare($sql);
+                $stmt->execute();
 
-                    $count = $stmt->fetch()["count"];
-                    $sec = 30/$count;
+                $count = $stmt->fetch()["count"];
+                $sec = 30/$count;
 
-                    echo "<p>There are currently <b>$count Accounts</b> being used, allowing the generation of a Custom Skull <b>every $sec seconds</b>.</p>"
+                echo "<p>There are currently <b>$count Accounts</b> being used, allowing the generation of a Custom Skull <b>every $sec seconds</b>.</p>"
                 ?>
 
                 <p>If you have a <b>spare Minecraft Account</b> which we can use to speed up this website, please <a href="mailto:crushedpixelmaps@gmail.com">contact us</a>.</p>
             </div>
             <div class="row">
                 <h2>The Developers</h2>
-                <p>The code behind the <b>Minecraft Skull Generator</b> was created by CrushedPixel, the design was made by TheDestruc7i0n.</p>
+                <p>The code behind <b>Mineskull</b> was created by CrushedPixel, the design was made by TheDestruc7i0n.</p>
                 <p>CrushedPixel is currently raising funds for an awesome Minecraft Mod on Kickstarter,
                     please back the project to support him!</p>
                 <center><iframe width="100%" height="455px" src="https://www.kickstarter.com/projects/crushedpixel/minecraft-replay-mod/widget/video.html"
