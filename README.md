@@ -1,4 +1,4 @@
-# MCMapAnalytics
+# Minecraft Custom Skull Generator
 The source code for http://crushedpixel.eu/skull, a web service that allows map makers to create custom skulls from a skin file.
 
 ## Introduction

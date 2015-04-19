@@ -56,13 +56,11 @@ global $con;
         </div>
     </div>
 </div>
-<br>
-<br>
 <div class="container bcon">
     <div class="row">
         <div class="col-lg-8 col-sm-offset-2">
             <div class="page-header">
-                <div class="jumbotron">
+                <div class="jumbotron" style="margin-top: 40px;">
                     <h1><center>Custom Skull Generator</center></h1>
                     <br>
                     <div class="row">
@@ -164,7 +162,7 @@ global $con;
             </div>
             <div class="row">
                 <h2>The Developers</h2>
-                <p>The code behind MCMapAnalytics was created by CrushedPixel, the design was made by TheDestruc7i0n.</p>
+                <p>The code behind the <b>Minecraft Skull Generator</b> was created by CrushedPixel, the design was made by TheDestruc7i0n.</p>
                 <p>CrushedPixel is currently raising funds for an awesome Minecraft Mod on Kickstarter,
                     please back the project to support him!</p>
                 <center><iframe width="100%" height="455px" src="https://www.kickstarter.com/projects/crushedpixel/minecraft-replay-mod/widget/video.html"

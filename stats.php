@@ -52,12 +52,10 @@ REQUIRE_ONCE "database_connection.php";
 		</div>
 	</div>
 </div>
-<br>
-<br>
 <div class="container bcon">
 	<div class="col-lg-8 col-sm-offset-2">
 		<div class="page-header">
-			<div class="jumbotron">
+			<div class="jumbotron" style="margin-top: 40px;">
 				<h1><center>General Statistics</center></h1>
 			</div>
 		</div>
