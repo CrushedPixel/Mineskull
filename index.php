@@ -16,6 +16,7 @@ global $con;
                                     maximum-scale=1.0,
                                     user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/analytics/favicon.ico" />
 </head>
 
 <style>
@@ -179,6 +180,8 @@ global $con;
         </div>
     </div>
 </div>
+
+<hr/>
 
 <ul class="breadcrumb">
     <center><li class="active">&copy; 2015 <a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a> &amp; <a href="http://thedestruc7i0n.ca" target="_blank">TheDestruc7i0n</a></li></center>

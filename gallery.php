@@ -1,5 +1,10 @@
 <?php
 REQUIRE_ONCE "database_connection.php";
+
+$page = 1;
+if(isset($_GET["page"])) {
+    $page = $_GET["page"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +17,7 @@ REQUIRE_ONCE "database_connection.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/analytics/favicon.ico" />
 </head>
 
 <style>
@@ -65,7 +71,16 @@ REQUIRE_ONCE "database_connection.php";
             <?php
             global $con;
 
-            $sql = "SELECT url, id FROM generated ORDER BY id DESC LIMIT 30";
+            $pagesize = 30;
+
+            $sql = "SELECT COUNT(*) AS count FROM generated";
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+            $pagecount = (int)ceil($stmt->fetch()["count"]/$pagesize);
+
+            $offset = $pagesize*($page-1);
+
+            $sql = "SELECT url, id FROM generated ORDER BY id DESC LIMIT $pagesize OFFSET $offset";
             $stmt = $con->prepare($sql);
             $stmt->execute();
 
@@ -73,7 +88,9 @@ REQUIRE_ONCE "database_connection.php";
 
             echo '<center>';
 
-            echo "<h2>The most recent $count skulls:</h2>";
+            if($page === 1) {
+                echo "<h2>The most recent $count skulls:</h2>";
+            }
             while($row = $stmt->fetch()) {
                 echo '<a href="/skull?id='.$row["id"].'"><img style="margin:10px;" width="93px" height="100px"
                 src="http://heads.freshcoal.com/3d/3d.php?headOnly=true&aa=true&user='.$row["url"].'"/></a>';
@@ -84,6 +101,47 @@ REQUIRE_ONCE "database_connection.php";
         </div>
     </div>
 </div>
+
+<hr/>
+<center>
+    <?php
+    function printbutton($id) {
+        global $page;
+        if($page == $id) {
+            echo "<li class=\"active\">";
+        } else {
+            echo "<li>";
+        }
+        echo "<a href=\"/skull/gallery?page=$id\">$id</a>";
+        echo "</li>";
+    }
+
+    $toprint = array(1,2,3);
+    $toprint[] = $page-1;
+    $toprint[] = $page;
+    $toprint[] = $page+1;
+    $toprint[] = $pagecount-2;
+    $toprint[] = $pagecount-1;
+    $toprint[] = $pagecount;
+
+    echo '<ul class="pagination">';
+
+    $print = array();
+    foreach($toprint as $id) {
+        if(!(in_array($id, $print) or $id < 1 or $id > $pagecount)) {
+            if(!in_array($id-1, $print) and $id > 1) {
+                echo "<li><a>&#183;&#183;&#183;</a></li>";
+            }
+            printbutton($id);
+            $print[] = $id;
+        }
+    }
+
+    echo '</ud>';
+
+    ?>
+
+</center>
 <hr/>
 
 <ul class="breadcrumb">
