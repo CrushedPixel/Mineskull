@@ -12,7 +12,7 @@ REQUIRE_ONCE "database_connection.php";
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="shortcut icon" href="/analytics/favicon.ico" />
+	<link rel="shortcut icon" href="/skull/favicon.ico" />
 </head>
 
 <style>
@@ -93,7 +93,7 @@ REQUIRE_ONCE "database_connection.php";
 
 			$lastday = $stmt->fetch()["count"];
 
-			$average = (int)(($time-$first)/($total+$duplicates));
+			$average = (int)((24*60*60)/($lastday));
 
 			echo '<p>Total Skulls generated: <b>'. ($total+$duplicates) .'</b>,</p>';
 			echo '<p><b>'. $duplicates .'</b> of them being duplicates.</p><br>';

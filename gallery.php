@@ -17,7 +17,7 @@ if(isset($_GET["page"])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="/analytics/favicon.ico" />
+    <link rel="shortcut icon" href="/skull/favicon.ico" />
 </head>
 
 <style>
