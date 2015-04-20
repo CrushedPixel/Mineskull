@@ -124,6 +124,8 @@ if(isset($_GET["page"])) {
     $toprint[] = $pagecount-1;
     $toprint[] = $pagecount;
 
+    sort($toprint);
+
     echo '<ul class="pagination">';
 
     $print = array();
