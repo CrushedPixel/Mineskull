@@ -57,7 +57,16 @@ while($row = $stmt->fetch()) {
     break;
 }
 
-if($used > $time-60) { //Limit the usage for 1 generation per minute/ip
+$sql = "SELECT COUNT(*) AS count FROM accounts";
+$stmt = $con->prepare($sql);
+$stmt->execute();
+
+$count = $stmt->fetch()["count"];
+$sec = round(30/$count, 2);
+
+$wait = round($sec*5);
+
+if($used > $time-$wait) { //Limit usage of this tool
     header("Location: http://crushedpixel.eu/skull?error=2");
     exit;
 }

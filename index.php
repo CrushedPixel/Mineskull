@@ -1,6 +1,15 @@
 <?php
 REQUIRE_ONCE "database_connection.php";
 global $con;
+
+$sql = "SELECT COUNT(*) AS count FROM accounts";
+$stmt = $con->prepare($sql);
+$stmt->execute();
+
+$count = $stmt->fetch()["count"];
+$sec = round(30/$count, 2);
+
+$wait = round($sec*5);
 ?>
 
 <!DOCTYPE html>
@@ -88,6 +97,9 @@ global $con;
 
                     <?php
                     if(isset($_GET["error"])) {
+
+
+
                         $error = $_GET["error"];
                         switch($error) {
                             case 0:
@@ -97,7 +109,7 @@ global $con;
                                 $err_msg = "We don't have enough resources to process your request. Please try again in a couple of seconds.";
                                 break;
                             case 2:
-                                $err_msg = "You can only convert one player head per minute. Please try again in a couple of seconds.";
+                                $err_msg = "You can only convert one player head every $wait seconds. Please try again in a couple of seconds.";
                                 break;
                             case 3:
                                 $err_msg = "No skin uploaded!";
@@ -145,6 +157,7 @@ global $con;
                 <p>Using the Custom Skull Generator, you can create Player Heads from any skin file you want. Simply link to a skin on a website (e.g. on <a href="http://i.imgur.com/VqPtK5N.png">Imgur</a>)
                     or upload a skin file from your computer.</p>
                 <p class="text-success"><b>This tool works with the newest Minecraft versions</b> and is not affected by the Security Update which broke the old way of creating Custom Player Skulls.</p>
+                <iframe width="100%" height="480" src="https://www.youtube.com/embed/3uOtlWNCLGI" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="row">
                 <h2>How it works</h2>
@@ -153,13 +166,6 @@ global $con;
                 <p>Due to rate limitations on the Mojang API, a new security key can only be retrieved <b>every 30 seconds</b>. Therefore, multiple Minecraft Accounts are required to power this tool.</p>
 
                 <?php
-                $sql = "SELECT COUNT(*) AS count FROM accounts";
-                $stmt = $con->prepare($sql);
-                $stmt->execute();
-
-                $count = $stmt->fetch()["count"];
-                $sec = 30/$count;
-
                 echo "<p>There are currently <b>$count Accounts</b> being used, allowing the generation of a Custom Skull <b>every $sec seconds</b>.</p>"
                 ?>
 
