@@ -11,6 +11,6 @@ The skin files you provide are being uploaded to a Premium Minecraft Account. Us
 
 Due to rate limitations on the Mojang API, a new security key can only be retrieved every 30 seconds. Therefore, multiple Minecraft Accounts are required to power this tool.
 
-There are currently 6 Accounts being used, allowing the generation of a Custom Skull every 5 seconds.
+There are currently 7 Accounts being used, allowing the generation of a Custom Skull every 4.29 seconds.
 
 If you have a spare Minecraft Account which we can use to speed up this website, please contact us at crushedpixelmaps@gmail.com
